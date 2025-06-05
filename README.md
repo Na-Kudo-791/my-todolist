@@ -4,20 +4,28 @@
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/)
 [![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)](https://www.json.org/json-en.html)
 
-PHPとJSONファイルだけで動作する、データベース不要のシンプルなToDoリストアプリケーションです。PHPの基本的なスキルを証明するために作成しました。
-
-![ToDoリスト](https://i.imgur.com/top.png)
+PHPとJSONファイルだけで動作する、データベース不要のシンプルなToDoリストアプリケーションです。
+PHPの基本的なスキルを学習するために作成しました。
 
 ---
 
 ## ✨ このプロジェクトで出来ること (Key Features)
 
 * **基本的なCRUD操作:** タスクの追加(Create)、表示(Read)、編集(Update)、削除(Delete)
-  
-* **状態管理:** タスクの「完了」「未完了」の切り替え
-* **優先度設定:** 特定のタスクをリスト上部に「ピン止め」する機能
-* **カスタマイズ:** 5色のパステルカラーからタスクの背景色を選択可能
 
+  トップ画面
+  ![ToDoリスト](images/top.png)
+  タスクの追加
+  ![add_task](images/add_list.png)
+  タスクの編集
+  ![update_task1](images/update1.png)
+  ![update_task2](images/update2.png)
+* **状態管理:** タスクの「完了」「未完了」の切り替え
+  ![complete_task](images/complete.png)  
+* **カスタマイズ:** 5色のパステルカラーからタスクの背景色を選択可能
+ ![colors](images/colors.png)
+* **優先度設定:** 特定のタスクをリスト上部に「ピン止め」する機能
+  ![pin_task](images/pin.png)
 ---
 
 ## 🛠️ 技術スタック (Technology Stack)
@@ -41,7 +49,7 @@ PHPとJSONファイルだけで動作する、データベース不要のシン�
     ```
 
 3.  **データファイルの作成:**
-    プロジェクトフォルダ直下に `todos.json` という名前の空のファイルを作成し、中身を以下のように記述します。
+    プロジェクトフォルダ直下に `todos.json` という名前の空のファイルを作成し、中身を以下のように記述します。(作成済み)
     ```json
     []
     ```
