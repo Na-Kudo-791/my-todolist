@@ -1,0 +1,5 @@
+# ToDoリストのデータファイル（Gitの管理から除外）
+todos.json
+
+# macOSが自動生成する不可視ファイル（念のため）
+.DS_Store

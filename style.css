@@ -1,0 +1,154 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+h1 {
+    color: #4a5568;
+    text-align: center;
+}
+
+/* タスク追加フォーム */
+.add-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.add-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.add-form .colors {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.add-form .color-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-form .color-option input {
+    margin-right: 5px;
+}
+
+.add-form .color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+}
+
+.add-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-form button:hover {
+    background-color: #3182ce;
+}
+
+/* ToDoリスト */
+.todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+/* 色のスタイル */
+.color-white { background-color: #FFFFFF; }
+.color-red   { background-color: #FFD1D1; }
+.color-blue  { background-color: #D1E3FF; }
+.color-yellow{ background-color: #FFFAD1; }
+.color-green { background-color: #D1FFD7; }
+
+.todo-item.completed .task-text {
+    text-decoration: line-through;
+    color: #a0aec0;
+}
+
+.todo-item.pinned {
+    box-shadow: 0 0 0 2px #f6e05e, 0 1px 3px rgba(0, 0, 0, 0.1); /* ピン止めを強調 */
+}
+
+
+.task-content {
+    flex-grow: 1;
+}
+
+.task-text {
+    margin: 0;
+}
+
+.edit-form input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+
+/* アクションボタン */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    color: #718096;
+    transition: color 0.2s;
+}
+
+.actions button:hover {
+    color: #2d3748;
+}
+
+.pin-button.pinned {
+    color: #f6e05e; /* ピン止めアイコンの色 */
+}
