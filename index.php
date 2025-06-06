@@ -4,8 +4,8 @@
 $dataFile = 'todos.json';
 
 /**
- * ToDoリストをファイルから読み込む関数
- * @return array
+ * todos.jsonというファイルが存在するかチェックし、存在すればその内容を読み込んでPHPの連想配列に変換（json_decode）して返します。
+ * ファイルがなければ空の配列を返します。
  */
 function getTodos() {
     global $dataFile;
@@ -23,23 +23,28 @@ function getTodos() {
 function saveTodos($todos) {
     global $dataFile;
     // ピン止め > ID(作成日時)の降順でソート
+    // ピン止めされたpinnedがtureが一番先頭に来るように
     usort($todos, function($a, $b) {
         if ($a['pinned'] != $b['pinned']) {
             return $b['pinned'] - $a['pinned'];
         }
         return $b['id'] - $a['id'];
     });
+    // PHPの配列をJSON形式の文字列に変換
+    // 読みやすいように、インデントや改行を付けて整形
     $json = json_encode($todos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     file_put_contents($dataFile, $json);
 }
 
 // POSTリクエストの処理
+// リクエストがPOSTメソッドの場合のみ、この中の処理が実行
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $todos = getTodos();
-    $action = $_POST['action'] ?? '';
+    $action = $_POST['action'] ?? '';// フォームの隠しフィールド action の値（add, deleteなど）を受け取り、どの操作をしたいのかを判断
 
     switch ($action) {
         // --- リストの追加 ---
+        //新しいToDoのデータ（ID、タスク内容、色など）を持つ連想配列を作成し、$todos配列の末尾に追加します。
         case 'add':
             if (!empty($_POST['task'])) {
                 $newTodo = [
@@ -54,12 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
         
         // --- リストの削除 ---
+        // array_filter()を使い、削除対象のIDと一致しないToDoだけを残した新しい配列を作成します
         case 'delete':
             $id = $_POST['id'];
             $todos = array_filter($todos, fn($todo) => $todo['id'] != $id);
             break;
             
         // --- リストの編集 ---
+        //foreachループで全てのToDoをチェックし、IDが一致するToDoを見つけます
+        // 参照渡しにすることで、ループ内の $todo を変更すると、元の $todos 配列の中身も直接書き換わるようにしています。
+        //これにより効率的に更新処理しています
         case 'update':
             $id = $_POST['id'];
             $updatedTask = $_POST['task'];
@@ -95,7 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     saveTodos($todos);
+    
     // POST後のリダイレクト（二重送信防止）
+    //POSTリクエストの処理が完了した後、ブラウザに対して「もう一度同じページにアクセスし直してください」という指示（リダイレクト）を出します。
+    //これにより、ユーザーが処理完了後にブラウザの「更新」ボタンを押しても、直前のPOSTリクエストが再送信されてしまう
+    //（例：タスクが二重に追加される）のを防ぎます。
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
 }
